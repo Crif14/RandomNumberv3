@@ -1,4 +1,4 @@
-#regole, #info1, #mess_life{
+#regole, .info{
     font-family: "Inter";
     font-weight: normal;
     font-size: 16px;
@@ -10,11 +10,14 @@
     width: 548px;
     height: 305px;
 }
-#info1{
+.info{
     margin-bottom: 3px;
     width: 350px;
 }
-#mess_life{
+#mess1, #mess2{
     margin-top: 18px;
     align-items: center;
+}
+.invs{
+    display: none;
 }

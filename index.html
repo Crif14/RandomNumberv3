@@ -47,15 +47,111 @@
                     </li>
                 </ol>
             </div>
-            <div class="center">
-                    <p id="info1">Inserisci il numero magico</p>
+            <div id="div_number" class="center">
+                <p class="info">Inserisci il numero magico</p>
                 <form method="get">
                     <input type="number" id="user_guess" value="0">
                     <br>
-                    <input type="button" id="button1" value="Indovina">
+                    <input type="button" id="button1" value="Indovina" class="button">
                 </form>
-                <p id="mess_life"></p>
+                <p id="mess1" class="info"></p>
+            </div>
+            <div id="div_retry" class="center  invs">
+                <p class="info" id="mess2"></p>
+                <form method="get">
+                    <input type="button" id="button2" value="Riprova" class="button">
+                </form>
             </div>
         </div>
+        <script>
+            function generateRandomInteger(min, max) { //generatore di numeri
+            let casualNumber = Math.random()
+            casualNumber = casualNumber * (max-min+1)+min
+            casualNumber = parseInt(casualNumber)
+            return casualNumber
+        }
+        function sanitize(sanitizer){ //sanitezer dei numeri in input
+            if (isNaN(sanitizer) || sanitizer>100 || sanitizer<1){
+                return true
+            } else{
+                return false
+            }
+        }
+        function play(){
+
+        }
+        let button1 = document.querySelector("#button1");
+        let button2 = document.querySelector("#button2");
+        let div_number = document.querySelector("#div_number");
+        let div_retry= document.querySelector("#div_retry");
+        let mess1 = document.querySelector("#mess1");
+        let mess2 = document.querySelector("#mess2");
+        let min= 1;
+        let life = 5;
+        let contatore = 0;
+        let max = 100;
+        let indovinato = false;
+        let perso = false;
+        let rnumber = generateRandomInteger(min, max);
+        let reset = 0
+        console.log(rnumber);
+        button1.addEventListener("click", function (event) { //ascoltatore degli eventi sul bottone per indovinare
+            let guess=document.querySelector('#user_guess').value;
+            guess =parseInt(guess.trim());
+            if(sanitize(guess)){
+                mess1.innerHTML = 'Numero non valido reinserire';
+            }else{
+                contatore += 1;
+                life -= 1;
+                if (guess === rnumber) {
+                
+                indovinato= true;
+                }else{ 
+                    if (guess > rnumber) {
+                        mess1.innerHTML = 'Il numero è più piccolo!<br>Hai ancora <strong>' + life + '</strong> vite';
+                    }else {
+                         mess1.innerHTML = 'Il numero è più grande!<br>Hai ancora <strong>' + life + '</strong> vite';
+                      }
+                }
+                if (life===0){
+                    perso=true;
+                }
+            }
+            if(indovinato||perso){
+                div_number.style.display = "none";
+                div_retry.style.display = "block"; //Scompare la sezione per inserire il numero appare quella per riprovare
+                if (indovinato) {
+                    if (reset===0){
+                        mess2.innerHTML = 'Hai vinto! Ci hai messo <strong>' + contatore + '</strong> tentativi.<br>Vuoi rigiocare?';//messaggio di vincita senza aver riprovato
+                    }else{
+                        mess2.innerHTML = 'Hai vinto! Ci hai messo <strong>' + contatore + '</strong> tentativi.<br> Hai riprovato <strong>'+reset+ '</strong>.<br>Vuoi rigiocare?'; //messaggio di vincita se hai riprovato
+                        button2.value = 'Rigioca'
+                    }
+                    reset=0
+                } else {
+                    mess2.innerHTML = 'Hai finito le vite.<br>Vuoi rigiocare?'; //messaggio se hai finito le vite
+                    button2.value = 'Riprova'
+                }
+            }
+            
+        })    
+        button2.addEventListener("click", function (event) { //ascoltatore degli eventi sul bottone per rigocare o riprovare
+                if (perso===true){
+                    reset += 1
+                }
+                life = 5;
+                contatore = 0;
+                max = 100;
+                indovinato = false;
+                perso = false;
+                rnumber = generateRandomInteger(min, max); //chiamata generatore numeri
+                console.log(rnumber)
+                mess1.innerHTML = ' '
+                mess2.innerHTML = ' '   
+                div_number.style.display = "block";
+                div_retry.style.display = "none"; //Appare la sezione per inserire il numero scompare quella per riprovare
+            });
+                
+        </script>
     </body>
 </html>
