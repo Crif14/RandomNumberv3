@@ -1,0 +1,8 @@
+#user_guess{
+    width: 350px;
+    height: 60px;
+    border-radius: 5px;
+    margin-bottom: 18px;
+    border-style: hidden;
+    background-color: white;
+}

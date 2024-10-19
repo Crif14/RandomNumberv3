@@ -1,2 +1,7 @@
 @import "center.css";
-@import "body.css"
+@import "body.css";
+@import "common.css";
+@import "title.css";
+@import "scritte.css";
+@import "button.css";
+@import "input.css"

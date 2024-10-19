@@ -1,0 +1,20 @@
+#regole, #info1, #mess_life{
+    font-family: "Inter";
+    font-weight: normal;
+    font-size: 16px;
+    line-height: auto;
+    color: #000000;
+}
+#regole{
+    margin-bottom: 80px;
+    width: 548px;
+    height: 305px;
+}
+#info1{
+    margin-bottom: 3px;
+    width: 350px;
+}
+#mess_life{
+    margin-top: 18px;
+    align-items: center;
+}
