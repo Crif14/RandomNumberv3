@@ -1,3 +1,15 @@
-.sfondo{
+.verde{
     background-color: #CCFFC5;
+    
+}
+.giallo{
+    background-color: yellow;
+    
+}
+.rosso{
+    background-color: red;
+    
+}
+#sfondo{
+    transition: all 2s;
 }
